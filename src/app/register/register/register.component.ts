@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
     private userService: UserService,
     private loginService: LoginService,
     private snackBar: MatSnackBar
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.signUpForm = new FormGroup({
@@ -46,7 +46,7 @@ export class RegisterComponent implements OnInit {
         this.loginService.redirectToMap();
       },
       error => {
-        this.snackBar.open("Failed registration");
+        this.snackBar.open("Failed registration", "", { duration: 3000 });
       }
     )
   }
