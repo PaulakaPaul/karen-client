@@ -18,7 +18,7 @@ export class LoginService {
 
   isAdmin(): boolean {
     const payload = this.jwtHelper.decodeToken() as JwtPayload;
-    return this.isLoggedIn() && payload.role === 'admin';
+    return this.isLoggedIn() && payload.role.toLowerCase() === 'admin';
   }
 
   saveToken(token: string): void {

@@ -42,7 +42,8 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        authScheme: 'Bearer'
+        authScheme: 'Bearer',
+        
       }
     }),
     RouterModule.forRoot([
