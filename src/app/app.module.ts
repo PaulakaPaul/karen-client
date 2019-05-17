@@ -14,6 +14,12 @@ import { SubmissionsComponent } from './submissions/submissions/submissions.comp
 import { NotFoundComponent } from './not-found/not-found/not-found.component';
 import { AuthGuard } from './services/auth.guard';
 import { AdminGuard } from './services/admin.guard';
+import { LivestreamModule } from './livestream/livestream.module';
+import { LoginModule } from './login/login.module';
+import { MapModule } from './map/map.module';
+import { NotFoundModule } from './not-found/not-found.module';
+import { RegisterModule } from './register/register.module';
+import { SubmissionsModule } from './submissions/submissions.module';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -24,6 +30,12 @@ export function tokenGetter() {
     AppComponent
   ],
   imports: [
+    LivestreamModule,
+    LoginModule,
+    MapModule,
+    NotFoundModule,
+    RegisterModule,
+    SubmissionsModule,
     BrowserModule,
     AppRoutingModule,
     MaterialModule,

@@ -21,7 +21,8 @@ export class LoginService {
     return this.isLoggedIn() && payload.role === 'admin';
   }
 
-  registerToken(token: string): void {
+  saveToken(token: string): void {
+    localStorage.setItem('token', token);
     this.router.navigate(['login']);
   }
 
