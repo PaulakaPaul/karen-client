@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
 import { FormGroup, FormControl } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { Login } from 'src/app/models/login.model';
 import { LoginService } from 'src/app/services/login.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -33,8 +32,11 @@ export class LoginComponent implements OnInit {
     const model = this.loginForm.value as Login;
     this.userService.logIn(model)
       .subscribe(
-        token => this.loginService.saveToken(token),
-        error => {
+        token => {
+          this.loginService.saveToken(token.access_token)
+          this.loginService.redirectToMap();
+        },
+        (error: HttpErrorResponse) => {
           this.clearCredentials();
           this.snackBar.open("Bad credentials", "", { duration: 3000 })
         }

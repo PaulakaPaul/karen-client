@@ -9,7 +9,7 @@
       </mat-form-field>
 
       <mat-form-field>
-        <input formControlName="password" type="password" matInput placeholder="Password">
+        <input (keyup.enter)="onSubmit()" formControlName="password" type="password" matInput placeholder="Password">
       </mat-form-field>
     </form>
 

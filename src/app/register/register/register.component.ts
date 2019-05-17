@@ -4,6 +4,7 @@ import { UserService } from 'src/app/services/user.service';
 import { Register } from 'src/app/models/register.model';
 import { LoginService } from 'src/app/services/login.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -42,11 +43,11 @@ export class RegisterComponent implements OnInit {
     const model = this.signUpForm.value as Register;
     this.userService.signUp(model).subscribe(
       token => {
-        this.loginService.saveToken(token);
+        this.loginService.saveToken(token.access_token)
         this.loginService.redirectToMap();
       },
-      error => {
-        this.snackBar.open("Failed registration", "", { duration: 3000 });
+      (error: HttpErrorResponse) => {
+        this.snackBar.open("Failed registration", "", { duration: 3000 })
       }
     )
   }

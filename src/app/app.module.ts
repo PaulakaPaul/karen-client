@@ -8,18 +8,20 @@ import { MaterialModule } from './material/material.module';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login/login.component';
 import { RegisterComponent } from './register/register/register.component';
-import { MapComponent } from './map/map/map.component';
-import { LivestreamComponent } from './livestream/livestream/livestream.component';
-import { SubmissionsComponent } from './submissions/submissions/submissions.component';
 import { NotFoundComponent } from './not-found/not-found/not-found.component';
-import { AuthGuard } from './services/auth.guard';
-import { AdminGuard } from './services/admin.guard';
-import { LivestreamModule } from './livestream/livestream.module';
+import { LivestreamModule } from './shell/livestream/livestream.module';
 import { LoginModule } from './login/login.module';
-import { MapModule } from './map/map.module';
+import { MapModule } from './shell/map/map.module';
 import { NotFoundModule } from './not-found/not-found.module';
 import { RegisterModule } from './register/register.module';
-import { SubmissionsModule } from './submissions/submissions.module';
+import { SubmissionsModule } from './shell/submissions/submissions.module';
+import { ShellComponent } from './shell/shell/shell.component';
+import { ShellModule } from './shell/shell.module';
+import { AuthGuard } from './services/auth.guard';
+import { MapComponent } from './shell/map/map/map.component';
+import { LivestreamComponent } from './shell/livestream/livestream/livestream.component';
+import { AdminGuard } from './services/admin.guard';
+import { SubmissionsComponent } from './shell/submissions/submissions/submissions.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -30,12 +32,10 @@ export function tokenGetter() {
     AppComponent
   ],
   imports: [
-    LivestreamModule,
+    ShellModule,
     LoginModule,
-    MapModule,
     NotFoundModule,
     RegisterModule,
-    SubmissionsModule,
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
@@ -43,37 +43,41 @@ export function tokenGetter() {
       config: {
         tokenGetter: tokenGetter,
         authScheme: 'Bearer',
-        
+        whitelistedDomains: ['192.168.6.95:8080']
       }
     }),
     RouterModule.forRoot([
       {
-        path: '',
-        pathMatch: 'full',
-        redirectTo: 'map'
+        path: '', component: ShellComponent,
+        canActivate: [AuthGuard],
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            redirectTo: 'map'
+          },
+          {
+            path: 'map',
+            component: MapComponent,
+            canActivate: [AuthGuard]
+          },
+          {
+            path: 'livestream',
+            component: LivestreamComponent,
+            canActivate: [AdminGuard]
+          },
+          {
+            path: 'submissions',
+            component: SubmissionsComponent,
+            canActivate: [AdminGuard]
+          }
+        ]
       },
       {
-        path: 'login',
-        component: LoginComponent
+        path: 'login', component: LoginComponent
       },
       {
-        path: 'register',
-        component: RegisterComponent
-      },
-      {
-        path: 'map',
-        component: MapComponent,
-        canActivate: [AuthGuard]
-      },
-      {
-        path: 'livestream',
-        component: LivestreamComponent,
-        canActivate: [AdminGuard]
-      },
-      {
-        path: 'submissions',
-        component: SubmissionsComponent,
-        canActivate: [AdminGuard]
+        path: 'register', component: RegisterComponent
       },
       {
         path: '**',

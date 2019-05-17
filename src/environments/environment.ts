@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   pythonApi: "",
-  springApi: "http://localhost:8080"
+  springApi: "http://192.168.6.95:8080"
 };
 
 /*
