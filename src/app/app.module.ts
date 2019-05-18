@@ -42,7 +42,7 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        authScheme: 'Bearer',
+        authScheme: 'Bearer ',
         whitelistedDomains: ['192.168.6.95:8080']
       }
     }),

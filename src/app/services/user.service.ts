@@ -19,7 +19,6 @@ export class UserService {
   }
 
   public logIn(model: Login): Observable<any> {
-    return this.http.post<string>(`${environment.springApi}/user/login`, model)
-      .pipe(tap(console.log));
+    return this.http.post<string>(`${environment.springApi}/user/login`, model);
   }
 }

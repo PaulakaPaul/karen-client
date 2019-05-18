@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { MapComponent } from './map/map.component';
 import { AgmCoreModule } from '@agm/core';
 import { EventComponent } from './event/event.component';
+import { MaterialModule } from 'src/app/material/material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [MapComponent, EventComponent],
@@ -10,7 +12,9 @@ import { EventComponent } from './event/event.component';
     CommonModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBSyOq4Rl-qKeVfW4bKfSrA1-U04mHbGGo'
-    })
+    }),
+    MaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class MapModule { }

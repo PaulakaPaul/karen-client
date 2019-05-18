@@ -1,0 +1,38 @@
+img {
+  width: 100%;
+  max-width: 320px;
+}
+
+.comments-container {
+  display: block;
+  justify-content: space-between;
+  flex-direction: column;
+  max-height: 100%;
+}
+
+mat-tab {
+  height: 100%;
+}
+
+mat-card {
+  margin: 10px;
+}
+
+.message {
+  margin: 0 16px;
+}
+
+cdk-virtual-scroll-viewport {
+  height: 400px;
+  width: 100%;
+}
+
+mat-form-field {
+  width: 80%;
+  margin: 0 10px;
+}
+
+.new-comment {
+    display: flex;
+    justify-content: center;
+}

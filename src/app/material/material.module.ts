@@ -11,6 +11,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatRippleModule } from '@angular/material/core';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatTabsModule } from '@angular/material/tabs';
+import { ScrollDispatchModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [],
@@ -26,7 +28,9 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatSidenavModule,
     MatTooltipModule,
     MatRippleModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatTabsModule,
+    ScrollDispatchModule
   ],
   exports: [
     MatToolbarModule,
@@ -38,7 +42,9 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatSidenavModule,
     MatTooltipModule,
     MatRippleModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatTabsModule,
+    ScrollDispatchModule
   ]
 })
 export class MaterialModule { }

@@ -1,3 +1,32 @@
-<p>
-  event works!
-</p>
+<div class="container">
+  <img [src]="event.image" />
+  <mat-tab-group>
+    <mat-tab label="Comments">
+      <div class="comments-container">
+        <div class="comments">
+          <cdk-virtual-scroll-viewport itemSize="50">
+            <mat-card class="mat-elevation-z5" *cdkVirtualFor="let c of event.comments">
+              <mat-card-header>
+                <mat-card-title>{{c.postedBy.name}}</mat-card-title>
+                <mat-card-subtitle>{{c.postedAt | date : 'short'}}</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <p class="message">{{c.message}}</p>
+              </mat-card-content>
+            </mat-card>
+          </cdk-virtual-scroll-viewport>
+        </div>
+        <div class="new-comment">
+          <form [formGroup]="commentForm">
+            <mat-form-field>
+              <textarea (keyUp.enter)="onSubmit()" formControlName="message" matInput placeholder="Leave a comment"></textarea>
+            </mat-form-field>
+          </form>
+
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Submit">
+    </mat-tab>
+  </mat-tab-group>
+</div>
