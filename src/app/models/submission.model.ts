@@ -1,5 +1,17 @@
 export interface Submission {
     submissionId: string; // UUID
-    text: string;
-    image: string|any; //base64
+    submittedBy: Poster;
+    message: string;
+    image: string; //base64
+    status: string;
+}
+
+export interface SubmissionPostRequest {
+    message: string;
+    image: string;
+}
+
+export interface Poster {
+    userId: string;
+    name: string;
 }

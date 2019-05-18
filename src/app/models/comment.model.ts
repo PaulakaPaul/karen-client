@@ -1,10 +1,12 @@
+import { Poster } from './submission.model';
+
 export interface Comment {
-    userId: string; // UUID
-    name: string;
-    text: string;
+    commentId: string;
+    message: string;
+    postedAt: Date;
+    postedBy: Poster;
 }
 
 export interface CommentPostRequest {
-    userId: string;
-    text: string;
+    message: string;
 }
