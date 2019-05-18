@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="controller-box">
+    <div (mousedown)="forward()" (mouseup)="stop()" class="control-btn mat-elevation-z4" matRipple>
+      <img src="/assets/up_arrow.png" />
+    </div>
+    <div class="mid-box">
+      <div (mousedown)="left()" (mouseup)="stop()" class="control-btn mat-elevation-z4" matRipple>
+        <img src="/assets/left_arrow.png" />
+      </div>
+      <div (mousedown)="right()" (mouseup)="stop()" class="control-btn mat-elevation-z4" matRipple>
+        <img src="/assets/right_arrow.png" />
+      </div>
+    </div>
+    <div (mousedown)="backwards()" (mouseup)="stop()" class="control-btn mat-elevation-z4" matRipple>
+      <img src="/assets/down_arrow.png" />
+    </div>
+  </div>
+
+  <div class="controller-box play">
+    <div (mousedown)="takeOff()" (mouseup)="stop()" class="control-btn playbtn mat-elevation-z4" matRipple>
+      <img src="/assets/takeoff.png" />
+    </div>
+    <div *ngIf="!playing" (click)="playVideo()" class="control-btn playbtn mat-elevation-z4" matRipple>
+      <img src="/assets/play_button.png" />
+    </div>
+    <div *ngIf="playing" (click)="stopVideo()" class="control-btn playbtn mat-elevation-z4" matRipple>
+      <img src="/assets/stop_button.png" />
+    </div>
+    <div (mousedown)="land()" (mouseup)="stop()" class="control-btn playbtn mat-elevation-z4" matRipple>
+      <img src="/assets/land.png" />
+    </div>
+  </div>
+
+  <div class="controller-box">
+    <div (mousedown)="up()" (mouseup)="stop()" class="control-btn mat-elevation-z4" matRipple>
+      <img src="/assets/up_arrow.png" />
+    </div>
+    <div class="mid-box">
+      <div (mousedown)="rotateLeft()" (mouseup)="stop()" class="control-btn mat-elevation-z4" matRipple>
+        <img src="/assets/rotate_left.png" />
+      </div>
+      <div (mousedown)="rotateRight()" (mouseup)="stop()" class="control-btn mat-elevation-z4" matRipple>
+        <img src="/assets/rotate_right.png" />
+      </div>
+    </div>
+    <div (mousedown)="down()" (mouseup)="stop()" class="control-btn mat-elevation-z4" matRipple>
+      <img src="/assets/down_arrow.png" />
+    </div>
+  </div>
+</div>

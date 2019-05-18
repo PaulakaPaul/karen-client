@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
 import { Commands } from '../models/commands.model';
 
 @Injectable({
@@ -11,6 +11,7 @@ export class DroneCommandService {
 
   constructor() {
     this.socket = new WebSocket(`${environment.pythonWs}/command`);
+    console.log(this.socket)
   }
 
   takeOff() {

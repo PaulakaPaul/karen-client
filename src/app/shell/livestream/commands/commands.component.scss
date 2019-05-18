@@ -1,0 +1,39 @@
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.controller-box {
+  text-align: center;
+  width: 33%;
+}
+
+.play {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 30px;
+
+  img {
+    margin: auto;
+  }
+}
+
+.mid-box {
+  display: flex;
+  justify-content: space-around;
+}
+
+.control-btn {
+  display: inline-flex !important;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.playbtn {
+  margin: auto;
+  width: 100px;
+}
