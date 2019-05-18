@@ -1,3 +1,31 @@
-<p>shell</p>
+<mat-drawer-container autosize>
+  <mat-drawer #drawer mode="side" [opened]="true">
+    <div class="upper-links">
+      <a mat-button [routerLink]="['/map']" routerLinkActive="active" matTooltip="Map" matTooltipPosition="right">
+        <img src="/assets/place.png" />
+      </a>
 
-<router-outlet></router-outlet>
+      <a *ngIf="isAdmin" mat-button [routerLink]="['/livestream']" routerLinkActive="active" matTooltip="Livestream"
+        matTooltipPosition="right">
+        <img src="/assets/video.png" />
+      </a>
+
+      <a *ngIf="isAdmin" mat-button [routerLink]="['/submissions']" routerLinkActive="active" matTooltip="Submissions"
+        matTooltipPosition="right">
+        <img src="/assets/list.png" />
+      </a>
+    </div>
+
+    <div class="lower-links">
+      <a mat-button matTooltip="Log Out" matTooltipPosition="right" (click)="logOut()">
+        <img src="/assets/poweroff.png" />
+      </a>
+    </div>
+
+  </mat-drawer>
+
+  <div class="router-container">
+    <router-outlet></router-outlet>
+  </div>
+
+</mat-drawer-container>

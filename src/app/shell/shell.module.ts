@@ -5,6 +5,9 @@ import { RouterModule } from '@angular/router';
 import { MapModule } from './map/map.module';
 import { SubmissionsModule } from './submissions/submissions.module';
 import { LivestreamModule } from './livestream/livestream.module';
+import { MaterialModule } from '../material/material.module';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [ShellComponent],
@@ -13,7 +16,18 @@ import { LivestreamModule } from './livestream/livestream.module';
     LivestreamModule,
     SubmissionsModule,
     CommonModule,
-    RouterModule
+    RouterModule,
+    MaterialModule
   ]
 })
-export class ShellModule { }
+export class ShellModule {
+  icons: string[] = [
+    'account_circle.svg',
+    'format_align_right.svg'
+  ]
+  constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
+    this.icons.forEach(i =>
+      matIconRegistry.addSvgIconSet(domSanitizer.bypassSecurityTrustResourceUrl(`/assets/${i}`))
+    );
+  }
+}
