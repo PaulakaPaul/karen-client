@@ -14,6 +14,11 @@ mat-tab {
   height: 100%;
 }
 
+.submit-tab {
+  display:flex;
+  justify-content: center;
+}
+
 mat-card {
   margin: 10px;
 }
@@ -27,17 +32,29 @@ cdk-virtual-scroll-viewport {
   width: 100%;
 }
 
-
-
-.new-comment {
-    display: flex;
-    justify-content: center;
-    form {
-      width: 80%;
-      mat-form-field {
-        width: 100%;
-        margin: 0 10px;
-      }
-    }
+mat-form-field {
+  display: block;
 }
 
+.solution-form {
+  margin: 16px;
+}
+
+.submit-button {
+  margin-left: 16px;
+}
+
+.new-comment {
+  display: flex;
+  justify-content: center;
+
+  margin-top: 20px;
+  form {
+    width: 80%;
+
+    mat-form-field {
+      width: 100%;
+      margin: 0 10px;
+    }
+  }
+}

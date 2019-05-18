@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { EventService } from 'src/app/services/event.service';
+import { Event } from 'src/app/models/event.model';
+import { ErrorHandlerService } from 'src/app/services/error-handler.service';
 
 @Component({
   selector: 'app-submissions',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubmissionsComponent implements OnInit {
 
-  constructor() { }
+  events: Event[] = [];
+  loading: boolean = true;
+  constructor(
+    private eventService: EventService,
+    private errorHandler: ErrorHandlerService) { }
 
   ngOnInit() {
+    this.eventService.getEvents().subscribe(
+      events => {
+        this.events = events;
+        this.loading = false;
+      }, this.errorHandler.handle
+    );
   }
 
 }

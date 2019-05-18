@@ -13,6 +13,8 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ScrollDispatchModule } from '@angular/cdk/scrolling';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [],
@@ -30,7 +32,9 @@ import { ScrollDispatchModule } from '@angular/cdk/scrolling';
     MatRippleModule,
     MatBadgeModule,
     MatTabsModule,
-    ScrollDispatchModule
+    ScrollDispatchModule,
+    MatExpansionModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     MatToolbarModule,
@@ -44,7 +48,9 @@ import { ScrollDispatchModule } from '@angular/cdk/scrolling';
     MatRippleModule,
     MatBadgeModule,
     MatTabsModule,
-    ScrollDispatchModule
+    ScrollDispatchModule,
+    MatExpansionModule,
+    MatProgressSpinnerModule
   ],
   providers: [MatSnackBar]
 })

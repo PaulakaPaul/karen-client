@@ -1,3 +1,20 @@
-<p>
-  submissions works!
-</p>
+<div class="container">
+  <mat-spinner *ngIf="loading"></mat-spinner>
+  <div *ngIf="!loading" class="content">
+    <h1>Submissions management</h1>
+
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let e of events">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Drone ID: {{e.droneId}}
+          </mat-panel-title>
+          <mat-panel-description>
+            Number of submissions: {{e.submissions.length}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        {{e.submissions | json}}
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

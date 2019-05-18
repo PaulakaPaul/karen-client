@@ -1,17 +1,21 @@
-import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef, ViewChild, AfterViewInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CommentPostRequest, Comment } from 'src/app/models/comment.model';
 import { EventService } from 'src/app/services/event.service';
 import { Event } from 'src/app/models/event.model';
 import { LoginService } from 'src/app/services/login.service';
+import { ErrorHandlerService } from 'src/app/services/error-handler.service';
+import { MatSnackBar } from '@angular/material';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 
 @Component({
   selector: 'app-event',
   templateUrl: './event.component.html',
   styleUrls: ['./event.component.scss']
 })
-export class EventComponent implements OnInit {
+export class EventComponent implements OnInit, AfterViewInit {
 
+  @ViewChild('virtualScroll') virtualScroll: CdkVirtualScrollViewport;
   @Input() event: Event;
   commentForm: FormGroup;
   solutionForm: FormGroup;
@@ -19,7 +23,8 @@ export class EventComponent implements OnInit {
   constructor(
     private eventService: EventService,
     private loginService: LoginService,
-    private cd: ChangeDetectorRef) { }
+    private errorHandler: ErrorHandlerService,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.commentForm = new FormGroup({
@@ -32,7 +37,10 @@ export class EventComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  ngAfterViewInit(): void {
+  }
+
+  onCommentSubmit() {
     const request = this.commentForm.value as CommentPostRequest;
     const comment = { ...request, message: request.message.trim() }
     if (request.message.trim() !== '') {
@@ -48,30 +56,25 @@ export class EventComponent implements OnInit {
               name: this.loginService.getPayload().name
             }
           };
-          this.event.comments.unshift(newComment);
+          this.event.comments.push(newComment);
           this.event.comments = [...this.event.comments];
         });
     }
   }
 
-  onFileChange(event) {
-    let reader = new FileReader();
-
-    if (event.target.files && event.target.files.length) {
-      const [file] = event.target.files;
-      reader.readAsDataURL(file);
-
-      reader.onload = () => {
-        this.solutionForm.patchValue({
-          image: reader.result
-        });
-
-
-        console.log(reader.result)
-        // need to run CD since file load runs outside of zone
-        this.cd.markForCheck();
-      };
+  onSolutionSubmit() {
+    const blob = this.solutionForm.value.image.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(blob);
+    const self = this;
+    reader.onload = () => {
+      const base64image = reader.result as string;
+      self.eventService.postSubmission(self.event.eventId, {
+        message: self.solutionForm.value.message,
+        image: base64image
+      }).subscribe(submissionId => {
+        self.snackBar.open("Successfully submitted", "", { duration: 3000 })
+      }, self.errorHandler.handle);
     }
   }
-
 }

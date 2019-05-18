@@ -4,7 +4,7 @@
     <mat-tab label="Comments">
       <div class="comments-container">
         <div class="comments">
-          <cdk-virtual-scroll-viewport itemSize="50">
+          <cdk-virtual-scroll-viewport #virtualScroll itemSize="50">
             <mat-card class="mat-elevation-z5" *cdkVirtualFor="let c of event.comments">
               <mat-card-header>
                 <mat-card-title>{{c.postedBy.name}}</mat-card-title>
@@ -19,7 +19,7 @@
         <div class="new-comment">
           <form [formGroup]="commentForm">
             <mat-form-field>
-              <textarea (keyUp.enter)="onSubmit()" formControlName="message" matInput
+              <textarea (keyUp.enter)="onCommentSubmit()" formControlName="message" matInput
                 placeholder="Leave a comment"></textarea>
             </mat-form-field>
           </form>
@@ -27,15 +27,18 @@
         </div>
       </div>
     </mat-tab>
-    <mat-tab label="Submit">
-      <form [formGroup]="solutionForm">
+    <mat-tab class="submit-tab" label="Solution">
+      <form class="solution-form" [formGroup]="solutionForm">
         <mat-form-field>
-          <textarea placeholder="Message" matInput type="text" formControlName="message" />
+          <textarea placeholder="Message" matInput type="text" formControlName="message"></textarea>
         </mat-form-field>
 
-        <input mat-button (change)="onFileChange($event)" type="file"/>
-        <button mat-raised-button>Submit</button>
+        <mat-form-field>
+          <ngx-mat-file-input formControlName="image" placeholder="Image" [accept]="['.png', '.jpg']"></ngx-mat-file-input>
+        </mat-form-field>
       </form>
+
+      <button class="submit-button" [disabled]="solutionForm.invalid" (click)="onSolutionSubmit()" mat-raised-button color="primary">Submit</button>
     </mat-tab>
   </mat-tab-group>
 </div>

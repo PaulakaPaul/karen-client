@@ -4,7 +4,7 @@ export interface Submission {
     submittedAt: Date;
     message: string;
     image: string; //base64
-    status: string;
+    status: 'PENDING' | 'ACCEPTED' | 'DECLINED';
 }
 
 export interface SubmissionPostRequest {

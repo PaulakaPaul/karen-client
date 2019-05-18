@@ -6,6 +6,7 @@ import { EventComponent } from './event/event.component';
 import { MaterialModule } from 'src/app/material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 @NgModule({
   declarations: [MapComponent, EventComponent],
@@ -16,7 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
     }),
     MaterialModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MaterialFileInputModule
   ]
 })
 export class MapModule { }

@@ -3,7 +3,9 @@
     <app-event *ngIf="selectedEvent" [event]="selectedEvent"></app-event>
   </mat-drawer>
 
-  <agm-map [latitude]="latitude" [zoom]="zoom" [longitude]="longitude" [zoomControl]="false">
+  <mat-spinner *ngIf="loading"></mat-spinner>
+
+  <agm-map *ngIf="!loading" [latitude]="latitude" [zoom]="zoom" [longitude]="longitude" [zoomControl]="false">
     <agm-marker *ngFor="let e of events" (markerClick)="selectEvent(e)" [latitude]="e.coords.latitude" [longitude]="e.coords.longitude">
     </agm-marker>
   </agm-map>
