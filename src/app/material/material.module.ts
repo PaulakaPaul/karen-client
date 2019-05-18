@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -45,6 +45,7 @@ import { ScrollDispatchModule } from '@angular/cdk/scrolling';
     MatBadgeModule,
     MatTabsModule,
     ScrollDispatchModule
-  ]
+  ],
+  providers: [MatSnackBar]
 })
 export class MaterialModule { }

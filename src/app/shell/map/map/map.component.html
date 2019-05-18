@@ -1,5 +1,5 @@
 <mat-drawer-container>
-  <mat-drawer position="end" #drawer [opened]="selectedEvent" [mode]="push">
+  <mat-drawer (closedStart)="unselectEvent()" position="end" #drawer [opened]="selectedEvent" [mode]="push">
     <app-event *ngIf="selectedEvent" [event]="selectedEvent"></app-event>
   </mat-drawer>
 

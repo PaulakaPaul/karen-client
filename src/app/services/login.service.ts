@@ -21,14 +21,22 @@ export class LoginService {
     return this.isLoggedIn() && payload.role.toLowerCase() === 'admin';
   }
 
+  getPayload(): JwtPayload {
+    return this.jwtHelper.decodeToken() as JwtPayload;
+  }
+
   saveToken(token: string): void {
     localStorage.setItem('token', token);
     this.router.navigate(['login']);
   }
 
   logOut(): void {
-    localStorage.removeItem('token');
+    this.removeToken();
     this.redirectToLogin();
+  }
+
+  removeToken(): void {
+    localStorage.removeItem('token');
   }
 
   redirectToLogin(): void {

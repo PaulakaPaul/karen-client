@@ -19,7 +19,8 @@
         <div class="new-comment">
           <form [formGroup]="commentForm">
             <mat-form-field>
-              <textarea (keyUp.enter)="onSubmit()" formControlName="message" matInput placeholder="Leave a comment"></textarea>
+              <textarea (keyUp.enter)="onSubmit()" formControlName="message" matInput
+                placeholder="Leave a comment"></textarea>
             </mat-form-field>
           </form>
 
@@ -27,6 +28,14 @@
       </div>
     </mat-tab>
     <mat-tab label="Submit">
+      <form [formGroup]="solutionForm">
+        <mat-form-field>
+          <textarea placeholder="Message" matInput type="text" formControlName="message" />
+        </mat-form-field>
+
+        <input mat-button (change)="onFileChange($event)" type="file"/>
+        <button mat-raised-button>Submit</button>
+      </form>
     </mat-tab>
   </mat-tab-group>
 </div>

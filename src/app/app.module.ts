@@ -43,7 +43,7 @@ export function tokenGetter() {
       config: {
         tokenGetter: tokenGetter,
         authScheme: 'Bearer ',
-        whitelistedDomains: ['192.168.6.95:8080']
+        whitelistedDomains: ['192.168.6.103:8080']
       }
     }),
     RouterModule.forRoot([

@@ -27,6 +27,8 @@ export class RegisterComponent implements OnInit {
       name: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required])
     });
+
+    this.loginService.removeToken();
   }
 
   get email() {
