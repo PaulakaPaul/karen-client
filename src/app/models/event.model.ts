@@ -9,7 +9,7 @@ export interface Event {
     reportedAt: Date;
     comments: Comment[];
     submissions: Submission[];
-    status: 'OPENED' | 'CLOSED';
+    status: 'OPEN' | 'CLOSED';
 } 
 
 export interface Coords {

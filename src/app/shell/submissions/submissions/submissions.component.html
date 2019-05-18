@@ -15,7 +15,13 @@
         </mat-expansion-panel-header>
         <mat-grid-list cols="2" rowHeight="400px">
           <mat-grid-tile>
-            <img class="mat-elevation-z8 event-image" [src]="e.image" />
+            <div class="event-data">
+              <div matRipple>
+                <img (click)="fullimage(e.image)" class="mat-elevation-z8 event-image" [src]="e.image" />
+              </div>
+              <h4>Reported at: {{e.reportedAt | date : 'short'}}</h4>
+              <h4>Status: {{e.status}}</h4>
+            </div>
           </mat-grid-tile>
           <mat-grid-tile>
             <cdk-virtual-scroll-viewport itemSize="50" class="viewport">

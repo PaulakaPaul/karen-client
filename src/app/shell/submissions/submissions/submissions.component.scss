@@ -21,6 +21,19 @@ mat-spinner {
   border-radius: 20px;
 }
 
+h4 {
+  margin-bottom: 0px !important;
+}
+
+.event-data {
+  display: flex;
+  flex-direction: column;
+  div {
+      border-radius: 20px;
+      cursor: pointer;
+  }
+}
+
 .viewport {
   height: 400px;
   width: 300px;

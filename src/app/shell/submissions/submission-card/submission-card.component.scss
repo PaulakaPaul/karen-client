@@ -12,11 +12,19 @@ mat-card {
 }
 
 mat-card-content {
-    padding: 10px;
+  padding: 10px;
 }
 
 mat-card-actions {
-    padding-left: 10px;
-    padding-bottom: 10px !important;
-    margin-bottom: 0px;
+  padding-left: 10px;
+  padding-bottom: 10px !important;
+  margin-bottom: 0px;
+}
+
+mat-card-header {
+    cursor: pointer;
+}
+
+mat-card-header ::ng-deep .mat-card-header-text {
+  margin: 0;
 }

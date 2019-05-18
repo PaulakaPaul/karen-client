@@ -17,6 +17,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [],
@@ -38,7 +39,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatExpansionModule,
     MatProgressSpinnerModule,
     MatGridListModule,
-    MatDividerModule
+    MatDividerModule,
+    MatDialogModule
   ],
   exports: [
     MatToolbarModule,
@@ -56,7 +58,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatExpansionModule,
     MatProgressSpinnerModule,
     MatGridListModule,
-    MatDividerModule
+    MatDividerModule,
+    MatDialogModule
   ],
   providers: [MatSnackBar]
 })

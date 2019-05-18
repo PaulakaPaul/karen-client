@@ -1,12 +1,17 @@
 <mat-card class="mat-elevation-z3">
-  <img [src]="submission.image" />
+  <mat-card-header matRipple>
+
+    <img [src]="submission.image" (click)="fullimage(submission.image)"/>
+  </mat-card-header>
   <mat-card-content>
     <h2>{{submission.submittedBy.name}}</h2>
     <p>{{submission.message}}</p>
   </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button color="primary" (click)="accept()" [disabled]="submission.status == 'ACCEPTED'">ACCEPT</button>
-    <button mat-raised-button color="warn" (click)="decline()" [disabled]="submission.status == 'DECLINED'">DECLINE</button>
+  <mat-card-actions *ngIf="displayActions">
+    <button mat-raised-button color="primary" (click)="accept()"
+      [disabled]="submission.status == 'ACCEPTED'">ACCEPT</button>
+    <button mat-raised-button color="warn" (click)="decline()"
+      [disabled]="submission.status == 'DECLINED'">DECLINE</button>
   </mat-card-actions>
 </mat-card>
 <mat-divider></mat-divider>

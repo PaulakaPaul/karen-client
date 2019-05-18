@@ -1,5 +1,7 @@
 <div class="container">
-  <img [src]="event.image" />
+  <div matRipple>
+    <img class="event-image" (click)="fullimage(event.image)" [src]="event.image" />
+  </div>
   <mat-tab-group>
     <mat-tab label="Comments">
       <div class="comments-container">
@@ -28,19 +30,26 @@
       </div>
     </mat-tab>
     <mat-tab class="submit-tab" label="Solution">
-      <form class="solution-form" [formGroup]="solutionForm">
-        <mat-form-field>
-          <textarea placeholder="Message" matInput type="text" formControlName="message"></textarea>
-        </mat-form-field>
+      <ng-container *ngIf="event.status !== 'CLOSED'">
+        <form class="solution-form" [formGroup]="solutionForm">
+          <mat-form-field>
+            <textarea placeholder="Message" matInput type="text" formControlName="message"></textarea>
+          </mat-form-field>
 
-        <mat-form-field>
-          <ngx-mat-file-input formControlName="image" placeholder="Image" [accept]="['.png', '.jpg']">
-          </ngx-mat-file-input>
-        </mat-form-field>
-      </form>
+          <mat-form-field>
+            <ngx-mat-file-input formControlName="image" placeholder="Image" [accept]="['.png', '.jpg']">
+            </ngx-mat-file-input>
+          </mat-form-field>
+        </form>
 
-      <button class="submit-button" [disabled]="solutionForm.invalid" (click)="onSolutionSubmit()" mat-raised-button
-        color="primary">SUBMIT</button>
+        <button class="submit-button" [disabled]="solutionForm.invalid" (click)="onSolutionSubmit()" mat-raised-button
+          color="primary">SUBMIT</button>
+      </ng-container>
+
+      <ng-container *ngIf="event.status === 'CLOSED'">
+        <app-submission-card [displayActions]="false" [submission]="acceptedSubmission"></app-submission-card>
+      </ng-container>
+
     </mat-tab>
   </mat-tab-group>
 </div>
