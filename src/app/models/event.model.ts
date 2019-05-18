@@ -16,3 +16,9 @@ export interface Coords {
     latitude: number;
     longitude: number;
 }
+
+export interface EventPostRequest {
+    coords: Coords;
+    droneId: string;
+    image: string;
+}
