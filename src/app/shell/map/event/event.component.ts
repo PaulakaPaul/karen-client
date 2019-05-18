@@ -58,7 +58,10 @@ export class EventComponent implements OnInit, AfterViewInit {
           };
           this.event.comments.push(newComment);
           this.event.comments = [...this.event.comments];
-        });
+        }, this.errorHandler.handle(this.snackBar));
+    } else {
+      this.commentForm.reset();
+      this.snackBar.open("You cannot send an empty message", "", { duration: 3000 });
     }
   }
 
@@ -73,8 +76,10 @@ export class EventComponent implements OnInit, AfterViewInit {
         message: self.solutionForm.value.message,
         image: base64image
       }).subscribe(submissionId => {
-        self.snackBar.open("Successfully submitted", "", { duration: 3000 })
-      }, self.errorHandler.handle);
+        self.snackBar.open("Successfully submitted", "", { duration: 3000 });
+        self.solutionForm.reset();
+        this.solutionForm.get('image').setValue(null);
+      }, self.errorHandler.handle(this.snackBar));
     }
   }
 }

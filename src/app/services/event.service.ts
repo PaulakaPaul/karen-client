@@ -35,10 +35,18 @@ export class EventService {
 
   deleteComment(commentId: string): Observable<any> {
     return this.http.delete<any>(`${environment.springApi}/comment/${commentId}`);
-  } 
+  }
 
   postSubmission(eventId: string, submission: SubmissionPostRequest): Observable<any> {
     return this.http.post<any>(`${environment.springApi}/event/${eventId}/submission`, submission);
+  }
+
+  acceptSubmission(submissionId: string): Observable<any> {
+    return this.http.put<any>(`${environment.springApi}/submission/${submissionId}/`, { status: 'ACCEPTED' });
+  }
+
+  declineSubmission(submissionId: string): Observable<any> {
+    return this.http.put<any>(`${environment.springApi}/submission/${submissionId}/`, { status: 'DECLINED' });
   }
 }
 

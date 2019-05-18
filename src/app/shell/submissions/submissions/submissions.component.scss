@@ -16,3 +16,15 @@ mat-spinner {
   max-width: 80%;
   margin: auto;
 }
+
+.event-image {
+  border-radius: 20px;
+}
+
+.viewport {
+  height: 400px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

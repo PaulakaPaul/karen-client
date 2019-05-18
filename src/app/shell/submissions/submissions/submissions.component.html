@@ -7,13 +7,22 @@
       <mat-expansion-panel *ngFor="let e of events">
         <mat-expansion-panel-header>
           <mat-panel-title>
-            Drone ID: {{e.droneId}}
+            {{e.droneId}}
           </mat-panel-title>
           <mat-panel-description>
-            Number of submissions: {{e.submissions.length}}
+            Submissions: {{e.submissions.length}}
           </mat-panel-description>
         </mat-expansion-panel-header>
-        {{e.submissions | json}}
+        <mat-grid-list cols="2" rowHeight="400px">
+          <mat-grid-tile>
+            <img class="mat-elevation-z8 event-image" [src]="e.image" />
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
+              <app-submission-card *cdkVirtualFor="let s of e.submissions" [submission]="s"></app-submission-card>
+            </cdk-virtual-scroll-viewport>
+          </mat-grid-tile>
+        </mat-grid-list>
       </mat-expansion-panel>
     </mat-accordion>
   </div>

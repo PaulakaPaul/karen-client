@@ -34,11 +34,13 @@
         </mat-form-field>
 
         <mat-form-field>
-          <ngx-mat-file-input formControlName="image" placeholder="Image" [accept]="['.png', '.jpg']"></ngx-mat-file-input>
+          <ngx-mat-file-input formControlName="image" placeholder="Image" [accept]="['.png', '.jpg']">
+          </ngx-mat-file-input>
         </mat-form-field>
       </form>
 
-      <button class="submit-button" [disabled]="solutionForm.invalid" (click)="onSolutionSubmit()" mat-raised-button color="primary">Submit</button>
+      <button class="submit-button" [disabled]="solutionForm.invalid" (click)="onSolutionSubmit()" mat-raised-button
+        color="primary">SUBMIT</button>
     </mat-tab>
   </mat-tab-group>
 </div>

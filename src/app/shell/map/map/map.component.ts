@@ -3,6 +3,7 @@ import { Event } from 'src/app/models/event.model';
 import { EventService } from 'src/app/services/event.service';
 import { ErrorHandlerService } from 'src/app/services/error-handler.service';
 import { tap } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-map',
@@ -21,14 +22,15 @@ export class MapComponent implements OnInit {
 
   constructor(
     private eventService: EventService,
-    private errorHandler: ErrorHandlerService) { }
+    private errorHandler: ErrorHandlerService,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.eventService.getEvents().pipe(tap(console.log))
       .subscribe(e => {
         this.events = e;
         this.loading = false;
-      }, this.errorHandler.handle);
+      }, this.errorHandler.handle(this.snackBar));
   }
 
   selectEvent(event: Event) {

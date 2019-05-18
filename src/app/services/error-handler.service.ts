@@ -7,16 +7,19 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class ErrorHandlerService {
 
-  constructor(private snackBar: MatSnackBar) { }
+  constructor() { }
 
-  handle(error: HttpErrorResponse) {
-    if (error.status === 401)
-      this.snackBar.open("Unauthorized action", "", { duration: 3000 });
-    else if (error.status === 400)
-      this.snackBar.open("Bad input", "", { duration: 3000 });
-    else if (error.status === 403)
-      this.snackBar.open("You cannot perform this action", "", { duration: 3000 });
-    else if (error.status >= 500)
-      this.snackBar.open("Server error", "", { duration: 3000 })
+  handle(snackBar: MatSnackBar) {
+    return (error: HttpErrorResponse) => {
+      const self = this;
+      if (error.status === 401)
+        snackBar.open("Unauthorized action", "", { duration: 3000 });
+      else if (error.status === 400)
+        snackBar.open("Bad input", "", { duration: 3000 });
+      else if (error.status === 403)
+        snackBar.open("You cannot perform this action", "", { duration: 3000 });
+      else if (error.status >= 500)
+        snackBar.open("Server error", "", { duration: 3000 })
+    }
   }
 }
