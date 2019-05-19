@@ -17,7 +17,7 @@ export class VideoComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(new SetSelectedStream({
       title: 'TELLO-AS32C ',
-      src: 'https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8'
+      src: 'http://0.0.0.0:8081/stream/stream.m3u8'
     }));
     this.store.dispatch(new ChangePlayerStatus(PlayerStatus.PLAYING));
   }

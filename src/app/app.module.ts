@@ -42,7 +42,7 @@ export function tokenGetter() {
       config: {
         tokenGetter: tokenGetter,
         authScheme: 'Bearer ',
-        whitelistedDomains: ['192.168.6.100:8080', '192.168.6.167:8080']
+        whitelistedDomains: ['192.168.6.100:8080', '192.168.6.167:8080', '0.0.0.0:8081']
       }
     }),
     StoreModule.forRoot({}),
