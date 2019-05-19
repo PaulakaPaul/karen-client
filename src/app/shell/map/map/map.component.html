@@ -6,7 +6,7 @@
   <mat-spinner *ngIf="loading"></mat-spinner>
 
   <agm-map *ngIf="!loading" [latitude]="latitude" [zoom]="zoom" [longitude]="longitude" [zoomControl]="false">
-    <agm-marker [iconUrl]="'assets/' + (e.status == 'CLOSED' ? 'greenv.svg' : 'redx.png')"
+    <agm-marker [iconUrl]="'assets/' + (e.status == 'CLOSED' ? 'greenv.svg' : 'redx.svg')"
       *ngFor="let e of events" (markerClick)="selectEvent(e)" [latitude]="e.coords.latitude"
       [longitude]="e.coords.longitude">
     </agm-marker>
