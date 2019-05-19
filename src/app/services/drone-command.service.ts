@@ -9,6 +9,8 @@ export class DroneCommandService {
 
   canSend: boolean = false;
   socket: WebSocket;
+  stopped: boolean = true;
+  timer: number = 500;
 
   constructor() {
     this.socket = new WebSocket(`${environment.pythonWs}/command`);
@@ -18,79 +20,153 @@ export class DroneCommandService {
     }
   }
 
-  takeOff() {
-    if (this.canSend)
+  takeOff(init: boolean = true) {
+    if (init)
+      this.stopped = false;
+    if (this.canSend && (!this.stopped)) {
       this.socket.send(Commands.TAKEOFF);
+      console.log(Commands.TAKEOFF);
+      setTimeout(() => this.takeOff(false), this.timer)
+    }
   }
 
-  land() {
-    if (this.canSend)
+  land(init: boolean = true) {
+    if (init)
+      this.stopped = false;
+    if (this.canSend && !this.stopped) {
       this.socket.send(Commands.LAND);
+      console.log(Commands.LAND);
+      setTimeout(() => this.land(false), this.timer)
+    }
   }
 
   stop() {
-    if (this.canSend)
+    if (this.canSend) {
       this.socket.send(Commands.STOP);
+      console.log(Commands.STOP)
+      this.stopped = true;
+    }
   }
 
-  forward() {
-    if (this.canSend)
+  forward(init = true) {
+    if (init)
+      this.stopped = false;
+    if (this.canSend && !this.stopped) {
       this.socket.send(Commands.FORWARD);
+      console.log(Commands.FORWARD);
+      setTimeout(() => this.forward(false), this.timer)
+    }
   }
 
-  backwards() {
-    if (this.canSend)
+  backwards(init = true) {
+    if(init)
+      this.stopped = false;
+    if (this.canSend && !this.stopped) {
       this.socket.send(Commands.BACKWARDS);
+      console.log(Commands.BACKWARDS);
+      setTimeout(() => this.backwards(false), this.timer)
+    }
   }
 
-  left() {
-    if (this.canSend)
+  left(init = true) {
+    if(init)
+      this.stopped = false;
+    if (this.canSend && !this.stopped) {
       this.socket.send(Commands.LEFT);
+      console.log(Commands.LEFT);
+      setTimeout(() => this.left(false), this.timer)
+    }
   }
 
-  right() {
-    if (this.canSend)
+  right(init = true) {
+    if(init)
+      this.stopped = false;
+    if (this.canSend && !this.stopped) {
       this.socket.send(Commands.RIGHT);
+      console.log(Commands.RIGHT);
+      setTimeout(() => this.right(false), this.timer)
+    }
   }
 
-  up() {
-    if (this.canSend)
+  up(init = true) {
+    if(init)
+      this.stopped = false;
+    if (this.canSend && !this.stopped) {
       this.socket.send(Commands.UP);
+      console.log(Commands.UP);
+      setTimeout(() => this.up(false), this.timer)
+    }
   }
 
-  down() {
-    if (this.canSend)
+  down(init = true) {
+    if(init)
+      this.stopped = false;
+    if (this.canSend && !this.stopped) {
       this.socket.send(Commands.DOWN);
+      console.log(Commands.DOWN);
+
+      setTimeout(() => this.down(false), this.timer)
+    }
   }
 
-  rotateClockWise() {
-    if (this.canSend)
+  rotateClockWise(init = true) {
+    if(init)
+      this.stopped = false;
+    if (this.canSend && !this.stopped) {
       this.socket.send(Commands.R_CW);
+      console.log(Commands.R_CW);
+      setTimeout(() => this.rotateClockWise(false), this.timer)
+    }
   }
 
-  rotateCounterClockWise() {
-    if (this.canSend)
+  rotateCounterClockWise(init = true) {
+    if(init)
+      this.stopped = false;
+    if (this.canSend && !this.stopped) {
       this.socket.send(Commands.R_CCW);
+      console.log(Commands.R_CCW);
+      setTimeout(() => this.rotateCounterClockWise(false), this.timer)
+    }
   }
 
   flipRight() {
-    if (this.canSend)
+    this.stopped = false;
+    if (this.canSend && !this.stopped) {
       this.socket.send(Commands.F_R);
+      console.log(Commands.F_R);
+
+      setTimeout(this.flipRight, this.timer)
+    }
   }
 
   flipLeft() {
-    if (this.canSend)
+    this.stopped = false;
+    if (this.canSend && !this.stopped) {
       this.socket.send(Commands.F_L);
+      console.log(Commands.F_L);
+
+      setTimeout(this.flipLeft, this.timer)
+    }
   }
 
   flipForward() {
-    if (this.canSend)
+    this.stopped = false;
+    if (this.canSend && !this.stopped) {
       this.socket.send(Commands.F_F);
+      console.log(Commands.F_F);
+
+      setTimeout(this.flipForward, this.timer)
+    }
   }
 
   flipBackwards() {
-    if (this.canSend)
+    this.stopped = false;
+    if (this.canSend && !this.stopped) {
       this.socket.send(Commands.F_B);
+      console.log(Commands.F_B);
+
+      setTimeout(this.flipBackwards, this.timer)
+    }
   }
 
   startVideo() {

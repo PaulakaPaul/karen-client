@@ -8,10 +8,10 @@ import { DroneStatusService } from 'src/app/services/drone-status.service';
 })
 export class StatusComponent implements OnInit {
 
-  //constructor(private droneStatusService: DroneStatusService) { }
+  constructor(private droneStatusService: DroneStatusService) { }
 
   ngOnInit() {
-    //this.droneStatusService.receiveData(this.handler);
+    this.droneStatusService.receiveData(this.handler);
   }
 
   private handler(event: MessageEvent) {

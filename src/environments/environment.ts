@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  pythonWs: "ws://192.168.6.167:8080",
+  pythonWs: "ws://127.0.0.1:8080",
   springApi: "http://192.168.6.100:8080" 
 };
 
