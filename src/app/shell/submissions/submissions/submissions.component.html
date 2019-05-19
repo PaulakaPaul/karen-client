@@ -25,7 +25,7 @@
           </mat-grid-tile>
           <mat-grid-tile>
             <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
-              <app-submission-card *cdkVirtualFor="let s of e.submissions" [submission]="s"></app-submission-card>
+              <app-submission-card (accepted)="accepted(e)" (declinedAccepted)="declinedAccepted(e)" *cdkVirtualFor="let s of e.submissions" [submission]="s"></app-submission-card>
             </cdk-virtual-scroll-viewport>
           </mat-grid-tile>
         </mat-grid-list>

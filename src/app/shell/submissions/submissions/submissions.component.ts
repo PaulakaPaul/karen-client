@@ -36,4 +36,12 @@ export class SubmissionsComponent implements OnInit {
     });
   }
 
+  declinedAccepted(event: Event) {
+    event.status = 'OPEN';
+  }
+
+  accepted(event: Event) {
+    event.status = 'CLOSED';
+  }
+
 }

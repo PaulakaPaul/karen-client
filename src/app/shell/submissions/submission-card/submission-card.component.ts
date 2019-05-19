@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Submission } from 'src/app/models/submission.model';
 import { EventService } from 'src/app/services/event.service';
 import { ErrorHandlerService } from 'src/app/services/error-handler.service';
@@ -14,6 +14,8 @@ export class SubmissionCardComponent implements OnInit {
 
   @Input() submission: Submission;
   @Input() displayActions: boolean = true;
+  @Output() accepted = new EventEmitter();
+  @Output() declinedAccepted = new EventEmitter();
 
   constructor(
     private eventService: EventService,
@@ -28,6 +30,7 @@ export class SubmissionCardComponent implements OnInit {
     this.eventService.acceptSubmission(this.submission.submissionId)
       .subscribe(data => {
         this.submission.status = 'ACCEPTED';
+        this.accepted.emit();
         this.snackBar.open("Submission accepted", "", { duration: 3000 });
       }, this.errorHandler.handle(this.snackBar))
   }
@@ -35,6 +38,8 @@ export class SubmissionCardComponent implements OnInit {
   decline() {
     this.eventService.declineSubmission(this.submission.submissionId)
       .subscribe(data => {
+        if (this.submission.status === 'ACCEPTED')
+          this.declinedAccepted.emit();
         this.submission.status = 'DECLINED';
         this.snackBar.open("Submission declined", "", { duration: 3000 });
       }, this.errorHandler.handle(this.snackBar))
