@@ -20,10 +20,17 @@ export class DroneCommandService {
     }
   }
 
+  checkSocket() {
+    if (this.socket.CLOSED || this.socket.CLOSING) {
+      this.socket = new WebSocket(`${environment.pythonWs}/command`);
+    }
+  }
+
   takeOff(init: boolean = true) {
     if (init)
       this.stopped = false;
     if (this.canSend && (!this.stopped)) {
+      this.checkSocket();
       this.socket.send(Commands.TAKEOFF);
       console.log(Commands.TAKEOFF);
       setTimeout(() => this.takeOff(false), this.timer)
@@ -34,6 +41,7 @@ export class DroneCommandService {
     if (init)
       this.stopped = false;
     if (this.canSend && !this.stopped) {
+      this.checkSocket();
       this.socket.send(Commands.LAND);
       console.log(Commands.LAND);
       setTimeout(() => this.land(false), this.timer)
@@ -42,6 +50,7 @@ export class DroneCommandService {
 
   stop() {
     if (this.canSend) {
+      this.checkSocket();
       this.socket.send(Commands.STOP);
       console.log(Commands.STOP)
       this.stopped = true;
@@ -52,6 +61,7 @@ export class DroneCommandService {
     if (init)
       this.stopped = false;
     if (this.canSend && !this.stopped) {
+      this.checkSocket();
       this.socket.send(Commands.FORWARD);
       console.log(Commands.FORWARD);
       setTimeout(() => this.forward(false), this.timer)
@@ -59,9 +69,10 @@ export class DroneCommandService {
   }
 
   backwards(init = true) {
-    if(init)
+    if (init)
       this.stopped = false;
     if (this.canSend && !this.stopped) {
+      this.checkSocket();
       this.socket.send(Commands.BACKWARDS);
       console.log(Commands.BACKWARDS);
       setTimeout(() => this.backwards(false), this.timer)
@@ -69,9 +80,10 @@ export class DroneCommandService {
   }
 
   left(init = true) {
-    if(init)
+    if (init)
       this.stopped = false;
     if (this.canSend && !this.stopped) {
+      this.checkSocket();
       this.socket.send(Commands.LEFT);
       console.log(Commands.LEFT);
       setTimeout(() => this.left(false), this.timer)
@@ -79,9 +91,10 @@ export class DroneCommandService {
   }
 
   right(init = true) {
-    if(init)
+    if (init)
       this.stopped = false;
     if (this.canSend && !this.stopped) {
+      this.checkSocket();
       this.socket.send(Commands.RIGHT);
       console.log(Commands.RIGHT);
       setTimeout(() => this.right(false), this.timer)
@@ -89,9 +102,10 @@ export class DroneCommandService {
   }
 
   up(init = true) {
-    if(init)
+    if (init)
       this.stopped = false;
     if (this.canSend && !this.stopped) {
+      this.checkSocket();
       this.socket.send(Commands.UP);
       console.log(Commands.UP);
       setTimeout(() => this.up(false), this.timer)
@@ -99,9 +113,10 @@ export class DroneCommandService {
   }
 
   down(init = true) {
-    if(init)
+    if (init)
       this.stopped = false;
     if (this.canSend && !this.stopped) {
+      this.checkSocket();
       this.socket.send(Commands.DOWN);
       console.log(Commands.DOWN);
 
@@ -110,9 +125,10 @@ export class DroneCommandService {
   }
 
   rotateClockWise(init = true) {
-    if(init)
+    if (init)
       this.stopped = false;
     if (this.canSend && !this.stopped) {
+      this.checkSocket();
       this.socket.send(Commands.R_CW);
       console.log(Commands.R_CW);
       setTimeout(() => this.rotateClockWise(false), this.timer)
@@ -120,9 +136,10 @@ export class DroneCommandService {
   }
 
   rotateCounterClockWise(init = true) {
-    if(init)
+    if (init)
       this.stopped = false;
     if (this.canSend && !this.stopped) {
+      this.checkSocket();
       this.socket.send(Commands.R_CCW);
       console.log(Commands.R_CCW);
       setTimeout(() => this.rotateCounterClockWise(false), this.timer)
@@ -132,6 +149,7 @@ export class DroneCommandService {
   flipRight() {
     this.stopped = false;
     if (this.canSend && !this.stopped) {
+      this.checkSocket();
       this.socket.send(Commands.F_R);
       console.log(Commands.F_R);
 
@@ -142,6 +160,7 @@ export class DroneCommandService {
   flipLeft() {
     this.stopped = false;
     if (this.canSend && !this.stopped) {
+      this.checkSocket();
       this.socket.send(Commands.F_L);
       console.log(Commands.F_L);
 
@@ -152,6 +171,7 @@ export class DroneCommandService {
   flipForward() {
     this.stopped = false;
     if (this.canSend && !this.stopped) {
+      this.checkSocket();
       this.socket.send(Commands.F_F);
       console.log(Commands.F_F);
 
@@ -162,6 +182,7 @@ export class DroneCommandService {
   flipBackwards() {
     this.stopped = false;
     if (this.canSend && !this.stopped) {
+      this.checkSocket();
       this.socket.send(Commands.F_B);
       console.log(Commands.F_B);
 
@@ -172,10 +193,12 @@ export class DroneCommandService {
   startVideo() {
     if (this.canSend)
       this.socket.send(Commands.START_VIDEO);
+    this.checkSocket();
   }
 
   stopVideo() {
     if (this.canSend)
       this.socket.send(Commands.STOP_VIDEO);
+    this.checkSocket();
   }
 }

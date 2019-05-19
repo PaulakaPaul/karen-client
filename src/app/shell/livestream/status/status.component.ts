@@ -16,10 +16,12 @@ export class StatusComponent implements OnInit {
     flight_time: '0'
   };
 
+  self = this;
+
   constructor(private droneStatusService: DroneStatusService) { }
 
   ngOnInit() {
-    this.droneStatusService.receiveData(this.handler);
+    this.droneStatusService.receiveData((event) => this.handler(event));
   }
 
   private handler(event: MessageEvent) {
