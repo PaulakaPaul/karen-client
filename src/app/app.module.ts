@@ -19,6 +19,8 @@ import { MapComponent } from './shell/map/map/map.component';
 import { LivestreamComponent } from './shell/livestream/livestream/livestream.component';
 import { AdminGuard } from './services/admin.guard';
 import { SubmissionsComponent } from './shell/submissions/submissions/submissions.component';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -40,9 +42,11 @@ export function tokenGetter() {
       config: {
         tokenGetter: tokenGetter,
         authScheme: 'Bearer ',
-        whitelistedDomains: ['192.168.6.100:8080']
+        whitelistedDomains: ['192.168.6.100:8080', '192.168.6.167:8080']
       }
     }),
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
     RouterModule.forRoot([
       {
         path: '', component: ShellComponent,
