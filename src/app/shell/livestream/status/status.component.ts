@@ -26,7 +26,7 @@ export class StatusComponent implements OnInit {
 
   private handler(event: MessageEvent) {
     console.log('raw', event.data);
-    this.status = event.data;
+    this.status = {...event.data};
   }
 
 }
