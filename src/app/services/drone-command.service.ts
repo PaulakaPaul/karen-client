@@ -21,9 +21,9 @@ export class DroneCommandService {
   }
 
   checkSocket() {
-    if (this.socket.CLOSED || this.socket.CLOSING) {
-      this.socket = new WebSocket(`${environment.pythonWs}/command`);
-    }
+    // if (this.socket.CLOSED || this.socket.CLOSING) {
+    //   this.socket = new WebSocket(`${environment.pythonWs}/command`);
+    // }
   }
 
   takeOff(init: boolean = true) {
