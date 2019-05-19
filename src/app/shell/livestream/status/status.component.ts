@@ -9,7 +9,7 @@ import { DroneStatus } from 'src/app/models/drone-status.model';
 })
 export class StatusComponent implements OnInit {
 
-  status: DroneStatus = {
+  status = {
     battery: '0',
     height: '0',
     speed: '0',
@@ -26,9 +26,7 @@ export class StatusComponent implements OnInit {
 
   private handler(event: MessageEvent) {
     console.log('raw', event.data);
-    var stat = event.data as DroneStatus
-    console.log(stat);
-    this.status = stat;
+    this.status = event.data;
   }
 
 }
