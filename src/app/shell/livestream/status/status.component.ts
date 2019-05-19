@@ -25,12 +25,7 @@ export class StatusComponent implements OnInit {
   private handler(event: MessageEvent) {
     var stat = event.data as DroneStatus
     console.log(stat);
-    this.status = {
-      battery: stat.battery ? stat.battery : this.status.battery,
-      height: stat.height ? stat.height : this.status.height,
-      speed: stat.speed ? stat.speed : this.status.speed,
-      flight_time: stat.flight_time ? stat.flight_time : this.status.flight_time,
-    }
+    this.status = stat;
   }
 
 }
