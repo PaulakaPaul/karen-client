@@ -7,78 +7,99 @@ import { Commands } from '../models/commands.model';
 })
 export class DroneCommandService {
 
+  canSend: boolean = false;
   socket: WebSocket;
 
   constructor() {
     this.socket = new WebSocket(`${environment.pythonWs}/command`);
-    console.log(this.socket)
+    this.socket.onopen = () => {
+      this.canSend = true;
+      console.log('you can now send commands')
+    }
   }
 
   takeOff() {
-    this.socket.send(Commands.TAKEOFF);
+    if (this.canSend)
+      this.socket.send(Commands.TAKEOFF);
   }
 
   land() {
-    this.socket.send(Commands.LAND);
+    if (this.canSend)
+      this.socket.send(Commands.LAND);
   }
 
   stop() {
-    this.socket.send(Commands.STOP);
+    if (this.canSend)
+      this.socket.send(Commands.STOP);
   }
 
   forward() {
-    this.socket.send(Commands.FORWARD);
+    if (this.canSend)
+      this.socket.send(Commands.FORWARD);
   }
 
   backwards() {
-    this.socket.send(Commands.BACKWARDS);
+    if (this.canSend)
+      this.socket.send(Commands.BACKWARDS);
   }
 
   left() {
-    this.socket.send(Commands.LEFT);
+    if (this.canSend)
+      this.socket.send(Commands.LEFT);
   }
 
   right() {
-    this.socket.send(Commands.RIGHT);
+    if (this.canSend)
+      this.socket.send(Commands.RIGHT);
   }
 
   up() {
-    this.socket.send(Commands.UP);
+    if (this.canSend)
+      this.socket.send(Commands.UP);
   }
 
   down() {
-    this.socket.send(Commands.DOWN);
+    if (this.canSend)
+      this.socket.send(Commands.DOWN);
   }
 
   rotateClockWise() {
-    this.socket.send(Commands.R_CW);
+    if (this.canSend)
+      this.socket.send(Commands.R_CW);
   }
 
   rotateCounterClockWise() {
-    this.socket.send(Commands.R_CCW);
+    if (this.canSend)
+      this.socket.send(Commands.R_CCW);
   }
 
   flipRight() {
-    this.socket.send(Commands.F_R);
+    if (this.canSend)
+      this.socket.send(Commands.F_R);
   }
 
   flipLeft() {
-    this.socket.send(Commands.F_L);
+    if (this.canSend)
+      this.socket.send(Commands.F_L);
   }
 
   flipForward() {
-    this.socket.send(Commands.F_F);
+    if (this.canSend)
+      this.socket.send(Commands.F_F);
   }
 
   flipBackwards() {
-    this.socket.send(Commands.F_B);
+    if (this.canSend)
+      this.socket.send(Commands.F_B);
   }
 
   startVideo() {
-    this.socket.send(Commands.START_VIDEO);
+    if (this.canSend)
+      this.socket.send(Commands.START_VIDEO);
   }
 
   stopVideo() {
-    this.socket.send(Commands.STOP_VIDEO);
+    if (this.canSend)
+      this.socket.send(Commands.STOP_VIDEO);
   }
 }
