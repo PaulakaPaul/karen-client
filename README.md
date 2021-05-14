@@ -1,4 +1,10 @@
-# KarenClient
+# Karen Client
+## Web Tellur Drone Controller for Garbage Detection
+
+GUI for https://github.com/IusztinPaul/karen-aiohttp-backend
+Basically you have a web app where you can:
+* control the drone
+* see the images from the drone + garbage detections.   
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.9.
 
