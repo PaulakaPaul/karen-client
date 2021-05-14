@@ -1,5 +1,5 @@
 # Karen Client
-## Web Tellur Drone Controller for Garbage Detection
+## Web Tellur Drone Controller for Garbage Object Detection
 
 GUI for https://github.com/IusztinPaul/karen-aiohttp-backend
 Basically you have a web app where you can:
